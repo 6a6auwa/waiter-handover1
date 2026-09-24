@@ -2,217 +2,120 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#f2f2f7">
-<title>Передача смены</title>
-<script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f5f8">
+<title>Передача смены 6-12-24</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root{--bg:#f2f2f7;--card:#fff;--text:#111;--muted:#6e6e73;--blue:#007aff;--green:#34c759;--red:#ff3b30;--line:#e5e5ea}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;background:var(--bg);color:var(--text);padding:calc(12px + env(safe-area-inset-top)) 14px calc(110px + env(safe-area-inset-bottom))}
-.app{max-width:560px;margin:auto}
-.hero{padding:12px 4px 18px} h1{font-size:30px;line-height:1.05;margin:5px 0 7px;letter-spacing:-.7px} .sub{color:var(--muted);font-size:14px}
-.panel,.check-card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
-.section-title{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin:20px 5px 8px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px} .field.full{grid-column:1/-1}
-label.field{font-size:12px;color:var(--muted);font-weight:600}
-input,select,textarea{width:100%;border:0;background:#f2f2f7;border-radius:12px;padding:13px;margin-top:6px;font:inherit;color:var(--text);outline:none;min-height:46px}
-textarea{min-height:95px;resize:vertical}
-.shift{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.shift input,.segmented input{display:none}
-.shift span,.segmented span{display:block;text-align:center;background:#f2f2f7;padding:12px 5px;border-radius:12px;font-weight:650;font-size:14px}
-.shift input:checked+span{background:var(--blue);color:#fff}
-.check-head{display:flex;gap:10px;align-items:center;margin-bottom:13px} .check-head>span{font-size:12px;color:var(--muted);font-weight:700} .check-head strong{font-size:16px}
-.segmented{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.segmented input[value="Да"]:checked+span{background:var(--green);color:#fff}
-.segmented input[value="Нет"]:checked+span{background:var(--red);color:#fff}
-.photo-btn{display:block;margin-top:10px;border:1px dashed #c7c7cc;border-radius:12px;padding:11px;text-align:center;color:var(--blue);font-weight:650;font-size:14px}
-.photo-btn input{display:none}
-.photo-preview img{width:76px;height:76px;object-fit:cover;border-radius:12px;margin-top:10px}
-.actions{display:grid;gap:9px;margin-top:16px}
-button{border:0;border-radius:14px;padding:15px;font:inherit;font-weight:750;font-size:16px}
-.primary{background:var(--blue);color:#fff} .secondary{background:#fff;color:var(--blue)} .danger{background:#fff;color:var(--red)}
-.status{display:none;padding:13px;border-radius:14px;margin:12px 0;font-size:14px} .status.ok{display:block;background:#e9f9ed;color:#176c2d} .status.err{display:block;background:#fff0ef;color:#a51d16}
-.report{display:none;background:#fff;border-radius:18px;padding:18px;margin-top:12px} .report.show{display:block} .report h2{margin-top:0}
-.report-row{padding:7px 0;border-bottom:1px solid var(--line);font-size:14px} .report-row b{display:block;font-size:12px;color:var(--muted);margin-bottom:2px}
-@media(max-width:390px){.grid{grid-template-columns:1fr} .field.full{grid-column:auto} h1{font-size:28px}}
-@media print{body{background:#fff;padding:0} .hero .sub,.actions,.photo-btn,.status{display:none!important} .panel,.check-card,.report{box-shadow:none;border:1px solid #ddd;break-inside:avoid} .report{display:block}}
+*{box-sizing:border-box} body{margin:0;background:#f4f5f8;color:#111;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:560px;margin:auto;padding:18px 14px 40px}.eyebrow{font-size:13px;color:#6d6d75}.title{font-size:28px;font-weight:800;margin:4px 0}.sub{color:#777;margin-bottom:24px}
+h2{font-size:13px;color:#5f6068;margin:22px 4px 10px}.card{background:#fff;border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.shift{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.shift input,.yn input{display:none}.pill{display:flex;align-items:center;justify-content:center;min-height:44px;background:#f0f1f5;border-radius:12px;font-weight:700}
+input:checked+.pill{background:#2481cc;color:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{margin-top:10px}
+label.cap{display:block;font-size:12px;color:#666;margin:0 0 5px}input[type=text],input[type=date],input[type=time],textarea{width:100%;border:0;background:#f1f2f6;border-radius:12px;padding:13px;font-size:16px;outline:none}
+.item-title{font-weight:750;margin-bottom:10px}.num{font-size:11px;color:#777;margin-right:7px}.yn{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.photo{margin-top:9px}.photo input{width:100%;font-size:14px}.preview{display:flex;gap:6px;overflow:auto;margin-top:8px}.preview img{height:64px;width:64px;object-fit:cover;border-radius:9px}
+textarea{min-height:90px;resize:vertical}.btn{width:100%;border:0;border-radius:14px;padding:16px;font-size:16px;font-weight:800;margin-top:10px;cursor:pointer}.primary{background:#2481cc;color:#fff}.secondary{background:#fff;color:#111;border:1px solid #ddd}
+.status{text-align:center;font-size:14px;margin:12px 4px;min-height:20px}.ok{color:#16863b}.err{color:#c62828}
+.note{font-size:12px;color:#777;line-height:1.4;margin-top:8px}
+@media(max-width:380px){.wrap{padding-left:10px;padding-right:10px}.title{font-size:25px}}
+@media print{body{background:white}.wrap{max-width:none;padding:0}.btn,.photo input,.note{display:none}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}}
 </style>
 </head>
-<body><main class="app">
-<div class="hero"><div class="sub">6-12-24 • Telegram Mini App</div><h1>Передача смены</h1><div class="sub">Официанты · контроль · фотофиксация</div></div>
+<body>
+<div class="wrap">
+  <div class="eyebrow">6-12-24 • Telegram Mini App</div>
+  <div class="title">Передача смены</div>
+  <div class="sub">Официанты • контроль • фотофиксация</div>
 
-<div class="section-title">Смена</div>
-<section class="panel">
-<div class="shift">
-<label><input type="radio" name="shift" value="Дневная"><span>Дневная</span></label>
-<label><input type="radio" name="shift" value="Вечерняя"><span>Вечерняя</span></label>
-<label><input type="radio" name="shift" value="Полная"><span>Полная</span></label>
+  <h2>СМЕНА</h2>
+  <div class="card">
+    <div class="shift">
+      <label><input type="radio" name="shift" value="Дневная"><span class="pill">Дневная</span></label>
+      <label><input type="radio" name="shift" value="Вечерняя"><span class="pill">Вечерняя</span></label>
+      <label><input type="radio" name="shift" value="Полная"><span class="pill">Полная</span></label>
+    </div>
+    <div class="grid">
+      <div class="field"><label class="cap">Дата</label><input id="date" type="date"></div>
+      <div class="field"><label class="cap">Время</label><input id="time" type="time"></div>
+    </div>
+    <div class="field"><label class="cap">Официант, сдающий смену</label><input id="employeeOut" type="text" placeholder="ФИО"></div>
+    <div class="field"><label class="cap">Официант, принимающий смену</label><input id="employeeIn" type="text" placeholder="ФИО"></div>
+    <div class="field"><label class="cap">Менеджер смены</label><input id="manager" type="text" placeholder="ФИО"></div>
+  </div>
+
+  <h2>КОНТРОЛЬ ПЕРЕДАЧИ</h2>
+  <div id="checks"></div>
+
+  <h2>КОММЕНТАРИЙ</h2>
+  <div class="card"><textarea id="comment" placeholder="Комментарий к передаче смены"></textarea></div>
+
+  <button id="sendBtn" class="btn primary">ПЕРЕДАТЬ СМЕНУ</button>
+  <button class="btn secondary" onclick="window.print()">СОХРАНИТЬ В PDF</button>
+  <div id="status" class="status"></div>
+  <div class="note">Фото отправляются вместе с передачей смены. На бесплатном Render первая отправка после простоя может занять до минуты.</div>
 </div>
-<div class="grid" style="margin-top:12px">
-<label class="field">Дата<input id="date" type="date"></label>
-<label class="field">Время<input id="time" type="time"></label>
-<label class="field full">Официант, сдающий смену<input id="employeeOut" autocomplete="name" placeholder="ФИО"></label>
-<label class="field full">Официант, принимающий смену<input id="employeeIn" autocomplete="name" placeholder="ФИО"></label>
-<label class="field full">Менеджер смены<input id="manager" autocomplete="name" placeholder="ФИО"></label>
-</div>
-</section>
-
-<div class="section-title">Контроль передачи</div>
-
-<section class="check-card" data-key="envelopes" data-title="Бумажные конверты">
-  <div class="check-head"><span>01</span><strong>Бумажные конверты</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="envelopes" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="envelopes" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="dishes" data-title="Посуда натёрта">
-  <div class="check-head"><span>02</span><strong>Посуда натёрта</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="dishes" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="dishes" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="pillows" data-title="Подушки поправлены">
-  <div class="check-head"><span>03</span><strong>Подушки поправлены</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="pillows" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="pillows" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="condiments" data-title="Кондименты пополнены">
-  <div class="check-head"><span>04</span><strong>Кондименты пополнены</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="condiments" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="condiments" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="cleaning" data-title="Уборка выполнена">
-  <div class="check-head"><span>05</span><strong>Уборка выполнена</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="cleaning" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="cleaning" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="bread" data-title="Хлеб в наличии">
-  <div class="check-head"><span>06</span><strong>Хлеб в наличии</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="bread" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="bread" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="napkins" data-title="Скрученные салфетки в наличии">
-  <div class="check-head"><span>07</span><strong>Скрученные салфетки в наличии</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="napkins" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="napkins" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="station" data-title="Стейшен официантов чистый">
-  <div class="check-head"><span>08</span><strong>Стейшен официантов чистый</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="station" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="station" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="kids_chairs" data-title="Детские стулья чистые">
-  <div class="check-head"><span>09</span><strong>Детские стулья чистые</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="kids_chairs" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="kids_chairs" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<section class="check-card" data-key="pencils" data-title="Карандаши наточены">
-  <div class="check-head"><span>10</span><strong>Карандаши наточены</strong></div>
-  <div class="segmented">
-    <label><input type="radio" name="pencils" value="Да"><span>Да</span></label>
-    <label><input type="radio" name="pencils" value="Нет"><span>Нет</span></label>
-  </div>
-  <label class="photo-btn">📷 Фотофиксация<input type="file" accept="image/*" capture="environment" class="photo-input"></label>
-  <div class="photo-preview"></div>
-</section>
-
-<div class="section-title">Комментарий</div>
-<section class="panel"><textarea id="comment" placeholder="Комментарий по передаче смены"></textarea></section>
-<div id="status" class="status"></div>
-<div class="actions">
-<button class="primary" id="saveBtn">Зафиксировать передачу</button>
-<button class="secondary" id="pdfBtn">Сохранить / выгрузить PDF</button>
-<button class="danger" id="resetBtn">Новая передача</button>
-</div>
-<section id="report" class="report"></section>
-</main>
 <script>
-const tg=window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();try{tg.setHeaderColor("#f2f2f7");tg.setBackgroundColor("#f2f2f7");tg.enableClosingConfirmation();}catch(e){}}
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-function defaults(){
- const d=new Date(), p=n=>String(n).padStart(2,"0");
- $("#date").value=`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
- $("#time").value=`${p(d.getHours())}:${p(d.getMinutes())}`;
-}
-defaults();
-$$(".photo-input").forEach(inp=>inp.addEventListener("change",()=>{
- const box=inp.closest(".check-card").querySelector(".photo-preview"); box.innerHTML="";
- const f=inp.files?.[0]; if(f){const img=new Image();img.src=URL.createObjectURL(f);box.append(img)}
-}));
-function collect(){
- const shift=$('input[name="shift"]:checked')?.value||"";
- const checks={}; let missing=[];
- $$(".check-card").forEach(c=>{let v=c.querySelector('input[type="radio"]:checked')?.value||"";checks[c.dataset.key]={title:c.dataset.title,value:v,photo:c.querySelector(".photo-input").files?.[0]?.name||""};if(!v)missing.push(c.dataset.title)});
- return {shift,date:$("#date").value,time:$("#time").value,employeeOut:$("#employeeOut").value.trim(),employeeIn:$("#employeeIn").value.trim(),manager:$("#manager").value.trim(),comment:$("#comment").value.trim(),checks,missing,telegramUser:tg?.initDataUnsafe?.user||null,savedAt:new Date().toISOString()};
+const API="https://waiter-handover.onrender.com/handover";
+const items=[
+ ["envelopes","Бумажные конверты"],
+ ["dishes","Посуда натёрта"],
+ ["pillows","Подушки поправлены"],
+ ["condiments","Кондименты пополнены"],
+ ["cleaning","Уборка выполнена"],
+ ["bread","Хлеб в наличии"],
+ ["napkins","Скрученные салфетки в наличии"],
+ ["station","Официантский стейшин чистый"],
+ ["kidsChairs","Детские стулья чистые"],
+ ["pencils","Карандаши наточены"]
+];
+const checks=document.getElementById("checks");
+items.forEach(([key,title],i)=>{
+ const el=document.createElement("div"); el.className="card";
+ el.innerHTML=`<div class="item-title"><span class="num">${String(i+1).padStart(2,"0")}</span>${title}</div>
+ <div class="yn">
+ <label><input type="radio" name="${key}" value="Да"><span class="pill">Да</span></label>
+ <label><input type="radio" name="${key}" value="Нет"><span class="pill">Нет</span></label>
+ </div>
+ <div class="photo"><label class="cap">📷 Фотофиксация</label>
+ <input type="file" name="photo_${key}" accept="image/*" capture="environment" multiple onchange="preview(this,this.nextElementSibling)">
+ <div class="preview"></div></div>`;
+ checks.appendChild(el);
+});
+function preview(inp,box){box.innerHTML="";[...inp.files].slice(0,4).forEach(f=>{let im=document.createElement("img");im.src=URL.createObjectURL(f);box.appendChild(im)})}
+function pad(n){return String(n).padStart(2,"0")}
+function initDate(){const d=new Date();document.getElementById("date").value=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;document.getElementById("time").value=`${pad(d.getHours())}:${pad(d.getMinutes())}`}
+initDate();
+const tg=window.Telegram?.WebApp; if(tg){tg.ready();tg.expand()}
+function val(name){return document.querySelector(`input[name="${name}"]:checked`)?.value||""}
+function payload(){
+ let c={};items.forEach(([k,t])=>c[k]={title:t,value:val(k)});
+ return {date:date.value,time:time.value,shift:val("shift"),employeeOut:employeeOut.value.trim(),employeeIn:employeeIn.value.trim(),manager:manager.value.trim(),comment:comment.value.trim(),checks:c,telegramInitData:tg?.initData||""}
 }
 function validate(d){
- if(!d.shift||!d.date||!d.time||!d.employeeOut||!d.employeeIn||!d.manager) return "Заполните смену, дату, время и сотрудников.";
- if(d.missing.length) return "Отметьте Да/Нет во всех пунктах.";
+ if(!d.shift)return "Выберите смену";
+ if(!d.date||!d.time)return "Укажите дату и время";
+ if(!d.employeeOut)return "Укажите сдающего официанта";
+ if(!d.employeeIn)return "Укажите принимающего официанта";
+ if(!d.manager)return "Укажите менеджера смены";
+ for(const [k,t] of items) if(!d.checks[k].value)return `Отметьте «Да/Нет»: ${t}`;
  return "";
 }
-function render(d){
- const rows=Object.values(d.checks).map(x=>`<div class="report-row"><b>${x.title}</b>${x.value}${x.photo?" · фото: "+x.photo:""}</div>`).join("");
- $("#report").innerHTML=`<h2>Передача смены</h2>
- <div class="report-row"><b>Период</b>${d.date} · ${d.time} · ${d.shift}</div>
- <div class="report-row"><b>Сдаёт</b>${d.employeeOut}</div><div class="report-row"><b>Принимает</b>${d.employeeIn}</div>
- <div class="report-row"><b>Менеджер</b>${d.manager}</div>${rows}
- <div class="report-row"><b>Комментарий</b>${d.comment||"—"}</div>`;
- $("#report").classList.add("show");
-}
-$("#saveBtn").onclick=()=>{
- const d=collect(), err=validate(d), st=$("#status");
- if(err){st.className="status err";st.textContent=err;tg?.HapticFeedback?.notificationOccurred("error");return}
- localStorage.setItem("lastWaiterHandover",JSON.stringify(d)); render(d);
- st.className="status ok";st.textContent="Передача зафиксирована на этом устройстве.";tg?.HapticFeedback?.notificationOccurred("success");
- // Integration point: POST d + uploaded photo files to your HTTPS backend / Google Sheet.
+document.getElementById("sendBtn").onclick=async()=>{
+ const d=payload(),e=validate(d),st=document.getElementById("status"),btn=document.getElementById("sendBtn");
+ if(e){st.className="status err";st.textContent=e;tg?.HapticFeedback?.notificationOccurred("error");return}
+ if(!d.telegramInitData){st.className="status err";st.textContent="Откройте приложение кнопкой Open App внутри Telegram";return}
+ const fd=new FormData();fd.append("payload",JSON.stringify(d));
+ document.querySelectorAll('input[type=file]').forEach(inp=>[...inp.files].forEach(f=>fd.append("photos",f,f.name)));
+ btn.disabled=true;btn.textContent="ОТПРАВКА…";st.className="status";st.textContent="Передаём данные и фотографии…";
+ try{
+   const r=await fetch(API,{method:"POST",body:fd});const j=await r.json().catch(()=>({}));
+   if(!r.ok||!j.ok)throw new Error(j.error||`Ошибка ${r.status}`);
+   st.className="status ok";st.textContent="✓ Смена успешно передана в Telegram";
+   tg?.HapticFeedback?.notificationOccurred("success");
+   tg?.showAlert?.("Смена успешно передана");
+ }catch(x){st.className="status err";st.textContent="Не удалось отправить: "+x.message;tg?.HapticFeedback?.notificationOccurred("error")}
+ finally{btn.disabled=false;btn.textContent="ПЕРЕДАТЬ СМЕНУ"}
 };
-$("#pdfBtn").onclick=()=>{const d=collect(),err=validate(d);if(err){$("#status").className="status err";$("#status").textContent=err;return}render(d);setTimeout(()=>window.print(),150)};
-$("#resetBtn").onclick=()=>{if(confirm("Очистить форму и начать новую передачу?")){document.querySelectorAll("input,textarea").forEach(x=>{if(x.type==="radio")x.checked=false;else if(x.type!=="file")x.value=""});$$(".photo-preview").forEach(x=>x.innerHTML="");$("#report").classList.remove("show");$("#status").className="status";defaults();}};
-</script></body></html>
+</script>
+</body></html>
